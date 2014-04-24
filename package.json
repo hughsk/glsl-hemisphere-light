@@ -1,0 +1,36 @@
+{
+  "name": "glsl-hemisphere-light",
+  "description": "A reusable GLSL hemisphere light function",
+  "version": "0.0.0",
+  "main": "index.js",
+  "glslify": "index.glsl",
+  "dependencies": {},
+  "devDependencies": {
+    "normals": "^0.1.0",
+    "array-pack-2d": "^0.1.0",
+    "gl-vao": "^1.1.2",
+    "gl-now": "^1.3.1",
+    "gl-buffer": "^2.0.6",
+    "gl-matrix": "^2.1.0",
+    "glslify": "^1.2.1",
+    "eye-vector": "0.0.0",
+    "game-shell-orbit-camera": "0.0.2",
+    "stanford-dragon": "0.0.0",
+    "browserify": "^3.44.2",
+    "beefy": "^1.1.0"
+  },
+  "scripts": {
+    "start": "beefy demo.js:bundle.js -- -t glslify",
+    "bundle": "browserify demo.js -t glslify -o bundle.js"
+  },
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughsk.io/)",
+  "license": "MIT",
+  "homepage": "http://hughsk.github.io/glsl-hemisphere-light",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/glsl-hemisphere-light"
+  },
+  "bugs": {
+    "url": "https://github.com/hughsk/glsl-hemisphere-light/issues"
+  }
+}
