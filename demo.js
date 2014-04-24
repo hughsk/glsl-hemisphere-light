@@ -1,5 +1,4 @@
 var createCamera = require('game-shell-orbit-camera')
-var projection   = require('perspective-matrix')()
 var dragon       = require('stanford-dragon/3')
 var pack         = require('array-pack-2d')
 var eye          = require('eye-vector')
@@ -53,12 +52,9 @@ function init() {
       vertex: './demo.vert'
     , fragment: './demo.frag'
   })(gl)
-
-  projection.fov = Math.PI / 4
-  projection.near = 0.01
-  projection.far = 1000
 }
 
+var projection = new Float32Array(16)
 var eyevec = new Float32Array(3)
 var identity = mat4.identity(
   new Float32Array(16)
@@ -70,13 +66,17 @@ function render() {
 
   shader.bind()
 
-  projection.width = shell.width
-  projection.height = shell.height
-
   var view = camera.view()
   eye(view, eyevec)
 
-  shader.uniforms.uProjection = projection.data
+  mat4.perspective(projection
+    , Math.PI / 4
+    , shell.width / shell.height
+    , 0.001
+    , 1000
+  )
+
+  shader.uniforms.uProjection = projection
   shader.uniforms.uView = view
   shader.uniforms.uModel = identity
   shader.uniforms.uEye = eyevec
